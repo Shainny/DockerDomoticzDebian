@@ -41,7 +41,7 @@ RUN \
       curl https://bootstrap.pypa.io/get-pip.py -o /src/get-pip.py && \
       cd /src && \
       python3 get-pip.py && \
-   echo "---- Install Miio for Xiaomi Devices ----"
+   echo "---- Install Miio for Xiaomi Devices ----" && \
       pip3 install python-miio && \
    echo "---- Clean Packages & Directories ----" && \
       apt-get remove -y \
