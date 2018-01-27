@@ -49,7 +49,7 @@ RUN \
          git cmake build-essential \
          linux-headers-amd64 \
          libboost-dev libboost-thread-dev libboost-system-dev \
-         libss-dev libsqlite3-dev libcurl4-openssl-dev libusb-dev zlib1g-dev libudev-dev && \
+         libssl-dev libsqlite3-dev libcurl4-openssl-dev libusb-dev zlib1g-dev libudev-dev && \
       apt-get autoremove -y && \ 
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* && \
