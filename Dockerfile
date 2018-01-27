@@ -1,4 +1,4 @@
-FROM debian:stretch 
+FROM debian:jessie 
 
 ARG BUILD_DATE
 ARG VERSION
@@ -12,19 +12,19 @@ RUN \
    echo "---- Install Packages ----" && \
       apt-get update && apt-get install -y --no-install-recommends --fix-missing \
           git \
-          libssl1.0.2 libssl-dev libffi-dev \
           build-essential cmake \
           libboost-dev \
-          libboost-thread1.62.0 libboost-thread-dev \
-          libboost-system1.62.0 libboost-system-dev \
-          libboost-date-time1.62.0 libboost-date-time-dev \
-          libsqlite3-0 libsqlite3-dev \
+          libboost-thread-dev \
+          libboost-system-dev \
+          libboost-date-time-dev \
+          libsqlite3-dev \
           curl libcurl3 libcurl4-openssl-dev \
-          libusb-0.1-4 libusb-dev \
+          libssl-dev libffi-dev \
+          libusb-dev \
           zlib1g-dev \
           libudev-dev \
           linux-headers-amd64 \
-          python3.5 python3-dev \
+          python3 python3-dev \
           ca-certificates && \
    echo "---- Build Open ZWave ----" && \
       git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave-read-only && \
@@ -41,7 +41,7 @@ RUN \
       curl https://bootstrap.pypa.io/get-pip.py -o /src/get-pip.py && \
       cd /src && \
       python3 get-pip.py && \
-   echo "---- Install Miio for Xiaomi Devices ----"
+   echo "---- Install Miio for Xiaomi Devices ----" && \
       pip3 install python-miio && \
    echo "---- Clean Packages & Directories ----" && \
       apt-get remove -y \
@@ -49,7 +49,7 @@ RUN \
          git cmake build-essential \
          linux-headers-amd64 \
          libboost-dev libboost-thread-dev libboost-system-dev \
-         libss-dev libsqlite3-dev libcurl4-openssl-dev libusb-dev zlib1g-dev libudev-dev && \
+         libsqlite3-dev libcurl4-openssl-dev libssl-dev libffi-dev libusb-dev zlib1g-dev libudev-dev && \
       apt-get autoremove -y && \ 
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* && \
