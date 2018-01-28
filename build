@@ -3,7 +3,7 @@
 DOMOTICZ_VERSION=$(curl --silent https://releases.domoticz.com/releases/beta/version_linux_x86_64.h | awk '$2=="APPVERSION"{print $3}')
 echo "Domoticz Beta Version : ${DOMOTICZ_VERSION}"
 
-DEBIAN_VERSION="stretch"
+DEBIAN_VERSION=$(cat Dockerfile | awk '$1=="FROM"{print $2}' | awk -F':' '$1=="debian"{print $2}')
 echo "Debian Version : ${DEBIAN_VERSION}"
 
 IMAGE_NAME="domoticz_debian"
