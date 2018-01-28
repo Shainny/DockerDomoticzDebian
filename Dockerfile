@@ -14,13 +14,14 @@ RUN \
           git \
           build-essential cmake \
           libboost-dev \
-          libboost-thread-dev \
-          libboost-system-dev \
-          libboost-date-time-dev \
-          libsqlite3-dev \
+          libboost-thread1.55.0 libboost-thread-dev \
+          libboost-system1.55.0 libboost-system-dev \
+          libboost-date-time1.55.0 libboost-date-time-dev \
+          libsqlite3-0 libsqlite3-dev \
           curl libcurl3 libcurl4-openssl-dev \
-          libssl-dev libffi-dev \
-          libusb-dev \
+          libssl1.0.0 libssl-dev \
+          libffi6 libffi-dev \
+          libusb-0.1-4 libusb-dev \
           zlib1g-dev \
           libudev-dev \
           linux-headers-amd64 \
