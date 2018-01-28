@@ -1,14 +1,16 @@
 #!/bin/bash
 
+IMAGE_NAME="domoticz_debian"
+
 DOMOTICZ_VERSION=$(curl --silent https://releases.domoticz.com/releases/beta/version_linux_x86_64.h | awk '$2=="APPVERSION"{print $3}')
 echo "Domoticz Beta Version : ${DOMOTICZ_VERSION}"
 
 DEBIAN_VERSION=$(cat Dockerfile | awk '$1=="FROM"{print $2}' | awk -F':' '$1=="debian"{print $2}')
 echo "Debian Version : ${DEBIAN_VERSION}"
 
-IMAGE_NAME="domoticz_debian"
-IMAGE_VERSION="${DEBIAN_VERSION}_${DOMOTICZ_VERSION}"
+IMAGE_VERSION="${DEBIAN_VERSION}-${DOMOTICZ_VERSION}"
+IMAGE_TAG="${IMAGE_NAME}:${IMAGE_VERSION}"
 
-echo "---- Building image ${IMAGE_NAME}:${IMAGE_VERSION} ----"
+echo "---- Building image ${IMAGE_TAG} ----"
 
-docker build --build-arg BUILD_DATE='date -u +"%Y-%m-%dT%H:%M:%SZ"' --build-arg VERSION=${CONTAINER_VERSION} -t ${IMAGE_NAME}:${IMAGE_VERSION} .;
+docker build --build-arg BUILD_DATE='date -u +"%Y-%m-%dT%H:%M:%SZ"' --build-arg VERSION=${IMAGE_VERSION} -t ${IMAGE_TAG} .;
